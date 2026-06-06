@@ -18,4 +18,11 @@ print(prices)
 prices = prices*2
 print(prices)
 
+prefix = np.array(252)
 
+scores = np.array([[97,88],[29,81],[30,78]])
+print(scores)
+
+print("Prefix",prefix,"number of dims",prefix.ndim)
+print("Numbers ",numbers,"number of dims",numbers.ndim)
+print("Scores\n",scores,"\nnumber of dimensions",scores.ndim)
