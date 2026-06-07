@@ -53,3 +53,30 @@ print(scores[:,:])
 
 #  index : all and splicing 0 | -> all row each item index 0
 print(scores[:,0])
+
+# copy and view
+
+years = np.array([
+    2026,
+    1999,
+    2000,
+    2003,
+    2007,
+    2014
+])
+
+print("Original years",years)
+copy_years = years.copy()
+print("Copy years",copy_years)
+view_years  = years.view()
+print("View years",view_years)
+
+years[0]=1998
+
+print("Modified Original years",years)
+print("Copy years",copy_years)
+print("View years",view_years)
+
+print("Original base",years.base)
+print("Copy base",copy_years.base)
+print("View base",view_years.base)
