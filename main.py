@@ -163,3 +163,25 @@ n3 = np.array([
 print(np.where(x == 2))
 print(np.where(x % 2 == 0))
 print(np.where(n3%2==1))
+
+n4 = np.array([
+    [2,1],
+    [8,4],
+    [77,6]
+])
+
+print(np.sort(n4))
+
+from numpy import random
+
+# random single number
+x = random.randint(100)
+print(x)
+
+# random one dimensional array numbers, size=5 means array of five elements
+y = random.randint(100,size=5)
+print(y)
+
+# random multidimensional array numbers, size=(5,2) means 2 is columns and 5 is rows (rows,columns) 
+z = random.randint(100,size=(5,2))
+print(z)
