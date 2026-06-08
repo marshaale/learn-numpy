@@ -95,3 +95,24 @@ print(re_shaped.shape)
 print(re_shaped.ndim)
 
 print(two_dim.reshape(5,2))
+
+# loop through
+print("Looping through")
+for x in one_dim:
+    print(x)
+
+# for more than one dimension array you must use nested loop to get the value
+total_scores = 0
+for score in scores:
+    print(score)
+    for n in score:
+        total_scores += n
+        print(n)
+
+print("Total",total_scores)
+
+# using numpy iterator to simplify loop of more than one Dimension array
+print("Using numpy iterator")
+for score in np.nditer(scores):
+    print(score)
+
