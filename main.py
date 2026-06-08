@@ -80,3 +80,18 @@ print("View years",view_years)
 print("Original base",years.base)
 print("Copy base",copy_years.base)
 print("View base",view_years.base)
+
+one_dim = np.array([1,2,3,4,5,6,7,8])
+print(one_dim)
+print(one_dim.shape)
+
+two_dim = np.array([[1,2,3,4,5],[6,7,8,9,10]])
+print(two_dim)
+print(two_dim.shape)
+
+re_shaped = one_dim.reshape(4,2)
+print(re_shaped)
+print(re_shaped.shape)
+print(re_shaped.ndim)
+
+print(two_dim.reshape(5,2))
