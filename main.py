@@ -123,3 +123,24 @@ arr = np.concatenate((arr1,arr2))
 print(arr)
 
 print(np.concatenate((scores,scores),axis=1))
+
+print("Broadcasting..................")
+
+x = np.array([1,2,3,4,5,6])
+
+y = x * 2
+
+print("Y",y)
+
+n1 = np.array([
+    [1,2],
+    [3,4],
+    [5,6]
+])
+
+n2 = np.array([30,40])
+
+print("Addition",n1 + n2)
+print("Subtraction",n1-n2)
+print("Multiplication",n1*n2)
+print("Division",n1/n2)
