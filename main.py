@@ -144,3 +144,22 @@ print("Addition",n1 + n2)
 print("Subtraction",n1-n2)
 print("Multiplication",n1*n2)
 print("Division",n1/n2)
+
+
+print("Splitting.........")
+
+print(np.array_split(n1,3))
+
+print(np.array_split(x,2))
+
+print("Searching........")
+
+n3 = np.array([
+    [1,2],
+    [3,4],
+    [5,6]
+])
+
+print(np.where(x == 2))
+print(np.where(x % 2 == 0))
+print(np.where(n3%2==1))
