@@ -1,77 +1,45 @@
 import numpy as np
 
-empty_array = np.empty
-zeros_array = np.zeros((3,4)) # np.zeros(4) for one dimension
-ones_array = np.ones(5) # np.ones((3,4)) for two dimension
+sales = np.array([
+    [100, 150, 200],
+    [120, 130, 180],
+    [90, 160, 210]
+])
 
-print("Empty",empty_array)
-print("Zeros",zeros_array)
-print("Ones",ones_array)
+rows,columns = sales.shape # rows days, columns products
 
-# random one dimension array takes argument: start_or_stop,stop,step
-print("start_or_stop",np.arange(100)) # start_or_stop works like start from zero to 99. why not 100 because end exclude
-print("start,stop",np.arange(1,10)) # start,stop from 1 to 9.
-print("start,stop,step",np.arange(1,15,2)) # start,stop,step from 1 steps 2: 3,5,7,9,11,13.
+total_sales= np.sum(sales)
+max_sales = np.max(sales)
+min_sales = np.min(sales)
+avg_sales = np.mean(sales)
 
-# random
-print(np.random.randint(30,size=(3,3)))
+print("Total Sales",total_sales)
+print("Highest Sale",max_sales)
+print("Lowest Sale",min_sales)
+print(f"Avg Sale {avg_sales:.2f}")
 
-arr = np.array([[1,2,3],[4,5,6]])
+print("Total sales per day:", np.sum(sales,axis=1))
 
-rows,columns = arr.shape
 
-print("Rows",rows)
-print("Columns",columns)
-print("Shape",arr.shape)
-print("Dimension",arr.ndim)
-print("Size",arr.size)
-print("Dtype",arr.dtype)
+scores = np.array([
+    [80, 90, 70], # example of one result per row 80+90+70 =  240
+    [60, 75, 85],
+    [95, 88, 92],
+    [89, 78, 100]
+]) # example of one result per column 80+60+95+89 = 324
 
-numbers = np.array([1,2,3,4,5,6,7,8,9,10])
+students,subjects = scores.shape # rows = students, columns = subjects.
 
-print("Sum",numbers.sum())
-print("Sqrt",np.sqrt(numbers))
-print("Mean",numbers.mean())
-print("Max",numbers.max())
-print("Std",numbers.std())
+print("Students:",students)
+print("Subjects:",subjects)
 
-# vectorization
+avg_score_each_student = np.mean(scores,axis=1) # axis=1 operate across columns (horizontal) and produce one result per row.
+print("Avg score each student:",avg_score_each_student)
 
-print(numbers + 10)
-print(numbers * 5)
+avg_score_each_subject = np.mean(scores,axis=0) # axis=0 operate across rows (Vertical) and produce one result per column.
+print("Avg score each subject: ",avg_score_each_subject)
 
-# Broadcasting
-print("Broadcasting.......")
-print(arr + 10) # numpy handles like this [1,2,3] + [10,10,10] to match the shape.
-print(" ")
-print(np.array([1,2,3]) + np.array([10,10,10]))
+print("Highest score",np.max(scores))
 
-# Boolean mask
-
-mask = numbers >= 5 # return array of boolean
-
-print("Mask",mask)
-
-print(numbers[mask]) # return numbers gte 5
-
-# aggregation
-
-scores = np.array([[90,80,100],[70,65,88]])
-
-sum_of_scores = np.sum(scores)
-
-sum_of_each_student_score = np.sum(scores,axis=1)
-
-print("Sum of scores",sum_of_scores)
-print("Sum of each student score",sum_of_each_student_score)
-
-# save and load
-
-np.save("scores.npy",scores)
-
-loaded = np.load("scores.npy")
-
-np.savetxt("scores.csv",scores)
-print(np.loadtxt("scores.csv"))
-
-print(loaded)
+condition_mask = scores > 85
+print("Scores greater than 85",scores[condition_mask])
