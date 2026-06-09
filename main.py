@@ -1,187 +1,77 @@
 import numpy as np
 
-# print(np.__version__)
+empty_array = np.empty
+zeros_array = np.zeros((3,4)) # np.zeros(4) for one dimension
+ones_array = np.ones(5) # np.ones((3,4)) for two dimension
 
-numbers = np.array([1,2,3,4,5,6])
-print(numbers)
+print("Empty",empty_array)
+print("Zeros",zeros_array)
+print("Ones",ones_array)
 
-print("Type",type(numbers))
+# random one dimension array takes argument: start_or_stop,stop,step
+print("start_or_stop",np.arange(100)) # start_or_stop works like start from zero to 99. why not 100 because end exclude
+print("start,stop",np.arange(1,10)) # start,stop from 1 to 9.
+print("start,stop,step",np.arange(1,15,2)) # start,stop,step from 1 steps 2: 3,5,7,9,11,13.
 
-# squares 
-numbers = numbers * 2
-print(numbers)
+# random
+print(np.random.randint(30,size=(3,3)))
 
-prices = [10,15,11,20]
-print(prices)
+arr = np.array([[1,2,3],[4,5,6]])
 
-# concat
-prices = prices*2
-print(prices)
+rows,columns = arr.shape
 
-prefix = np.array(252)
+print("Rows",rows)
+print("Columns",columns)
+print("Shape",arr.shape)
+print("Dimension",arr.ndim)
+print("Size",arr.size)
+print("Dtype",arr.dtype)
 
-scores = np.array([
-    [97,88],
-    [29,81],
-    [30,78]
-    ])
+numbers = np.array([1,2,3,4,5,6,7,8,9,10])
 
-print(scores)
+print("Sum",numbers.sum())
+print("Sqrt",np.sqrt(numbers))
+print("Mean",numbers.mean())
+print("Max",numbers.max())
+print("Std",numbers.std())
 
-print("Prefix",prefix,"number of dims",prefix.ndim)
-print("Numbers ",numbers,"number of dims",numbers.ndim)
-print("Scores\n",scores,"\nnumber of dimensions",scores.ndim)
+# vectorization
 
-# chain indexing
-print(scores[0][0])
-print(scores[0][1])
-print(scores[1][0])
+print(numbers + 10)
+print(numbers * 5)
 
-# get entire row
-print(scores[0])
+# Broadcasting
+print("Broadcasting.......")
+print(arr + 10) # numpy handles like this [1,2,3] + [10,10,10] to match the shape.
+print(" ")
+print(np.array([1,2,3]) + np.array([10,10,10]))
 
-# multi dimensional indexing
-print(scores[0,1])
-print(scores[1,0])
-print(scores[2,0])
+# Boolean mask
 
-# slicing  index 0 then slicing : all | -> first row each all items
-print(scores[0,:])
+mask = numbers >= 5 # return array of boolean
 
-#  index : all and slicing : all | -> all for all
-print(scores[:,:])
+print("Mask",mask)
 
-#  index : all and splicing 0 | -> all row each item index 0
-print(scores[:,0])
+print(numbers[mask]) # return numbers gte 5
 
-# copy and view
+# aggregation
 
-years = np.array([
-    2026,
-    1999,
-    2000,
-    2003,
-    2007,
-    2014
-])
+scores = np.array([[90,80,100],[70,65,88]])
 
-print("Original years",years)
-copy_years = years.copy()
-print("Copy years",copy_years)
-view_years  = years.view()
-print("View years",view_years)
+sum_of_scores = np.sum(scores)
 
-years[0]=1998
+sum_of_each_student_score = np.sum(scores,axis=1)
 
-print("Modified Original years",years)
-print("Copy years",copy_years)
-print("View years",view_years)
+print("Sum of scores",sum_of_scores)
+print("Sum of each student score",sum_of_each_student_score)
 
-print("Original base",years.base)
-print("Copy base",copy_years.base)
-print("View base",view_years.base)
+# save and load
 
-one_dim = np.array([1,2,3,4,5,6,7,8])
-print(one_dim)
-print(one_dim.shape)
+np.save("scores.npy",scores)
 
-two_dim = np.array([[1,2,3,4,5],[6,7,8,9,10]])
-print(two_dim)
-print(two_dim.shape)
+loaded = np.load("scores.npy")
 
-re_shaped = one_dim.reshape(4,2)
-print(re_shaped)
-print(re_shaped.shape)
-print(re_shaped.ndim)
+np.savetxt("scores.csv",scores)
+print(np.loadtxt("scores.csv"))
 
-print(two_dim.reshape(5,2))
-
-# loop through
-print("Looping through")
-for x in one_dim:
-    print(x)
-
-# for more than one dimension array you must use nested loop to get the value
-total_scores = 0
-for score in scores:
-    print(score)
-    for n in score:
-        total_scores += n
-        print(n)
-
-print("Total",total_scores)
-
-# using numpy iterator to simplify loop of more than one Dimension array
-print("Using numpy iterator")
-for score in np.nditer(scores):
-    print(score)
-
-arr1 = np.array([1,2,3,4,5])
-arr2 = np.array([6,7,8,9,10])
-
-arr = np.concatenate((arr1,arr2))
-print(arr)
-
-print(np.concatenate((scores,scores),axis=1))
-
-print("Broadcasting..................")
-
-x = np.array([1,2,3,4,5,6])
-
-y = x * 2
-
-print("Y",y)
-
-n1 = np.array([
-    [1,2],
-    [3,4],
-    [5,6]
-])
-
-n2 = np.array([30,40])
-
-print("Addition",n1 + n2)
-print("Subtraction",n1-n2)
-print("Multiplication",n1*n2)
-print("Division",n1/n2)
-
-
-print("Splitting.........")
-
-print(np.array_split(n1,3))
-
-print(np.array_split(x,2))
-
-print("Searching........")
-
-n3 = np.array([
-    [1,2],
-    [3,4],
-    [5,6]
-])
-
-print(np.where(x == 2))
-print(np.where(x % 2 == 0))
-print(np.where(n3%2==1))
-
-n4 = np.array([
-    [2,1],
-    [8,4],
-    [77,6]
-])
-
-print(np.sort(n4))
-
-from numpy import random
-
-# random single number
-x = random.randint(100)
-print(x)
-
-# random one dimensional array numbers, size=5 means array of five elements
-y = random.randint(100,size=5)
-print(y)
-
-# random multidimensional array numbers, size=(5,2) means 2 is columns and 5 is rows (rows,columns) 
-z = random.randint(100,size=(5,2))
-print(z)
+print(loaded)
